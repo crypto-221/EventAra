@@ -14,54 +14,54 @@ def home():
     return render_template("eventfinder.html")
 
 
-@app.route("/aftersignup" , methods = ['POST'])
-def sign():
-    if request.method == 'POST':
-        name = request.form.get("name")
-        email = request.form.get("email")
-        password = request.form.get("password")
-        try:
-            conn = sql.connect(user ="root" , password = "" , port = 3306 , database = "Event")
-            cur = conn.cursor()
-        except Exception as e :
-            return render_template("eventfinder.html" ,  error="Database server is not running. Please start XAMPP/MySQL.")
-        else:
-            check = f"select * from signup where email = '{email}'"
-            ch = cur.execute(check)
-            if ch :
-                return render_template("eventfinder.html" , err =  "Email already exists....")
+# @app.route("/aftersignup" , methods = ['POST'])
+# def sign():
+#     if request.method == 'POST':
+#         name = request.form.get("name")
+#         email = request.form.get("email")
+#         password = request.form.get("password")
+#         try:
+#             conn = sql.connect(user ="root" , password = "" , port = 3306 , database = "Event")
+#             cur = conn.cursor()
+#         except Exception as e :
+#             return render_template("eventfinder.html" ,  error="Database server is not running. Please start XAMPP/MySQL.")
+#         else:
+#             check = f"select * from signup where email = '{email}'"
+#             ch = cur.execute(check)
+#             if ch :
+#                 return render_template("eventfinder.html" , err =  "Email already exists....")
 
-            else:
-                query = f"insert into signup values ('{email}' , '{password}' , '{name}')"
-                cur.execute(query)
-                conn.commit()
-                conn.close()
-    return render_template("eventfinder.html")
+#             else:
+#                 query = f"insert into signup values ('{email}' , '{password}' , '{name}')"
+#                 cur.execute(query)
+#                 conn.commit()
+#                 conn.close()
+#     return render_template("eventfinder.html")
 
 
-@app.route("/afterlogin" , methods = ['POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get("email")
-        user = email.split('@')
-        user = user[0]
-        password = request.form.get("password")
-        try:
-            conn = sql.connect(user = 'root' , password = '' , port = 3306 , database = 'Event')
-            cur = conn.cursor()
-            query = f"select * from signup where email = '{email}' and password = '{password}'"
-            data = cur.execute(query)
+# @app.route("/afterlogin" , methods = ['POST'])
+# def login():
+#     if request.method == 'POST':
+#         email = request.form.get("email")
+#         user = email.split('@')
+#         user = user[0]
+#         password = request.form.get("password")
+#         try:
+#             conn = sql.connect(user = 'root' , password = '' , port = 3306 , database = 'Event')
+#             cur = conn.cursor()
+#             query = f"select * from signup where email = '{email}' and password = '{password}'"
+#             data = cur.execute(query)
 
-        except Exception as e :
-            return render_template("eventfinder.html",error="Database server is not running. Please start XAMPP/MySQL."
-            )
+#         except Exception as e :
+#             return render_template("eventfinder.html",error="Database server is not running. Please start XAMPP/MySQL."
+#             )
 
-        if data:
-            session['user'] = user
-            return render_template("searchEvent.html" , user = user)
+#         if data:
+#             session['user'] = user
+#             return render_template("searchEvent.html" , user = user)
 
-        else:
-            return render_template("eventfinder.html", error = "invalid email or password")
+#         else:
+#             return render_template("eventfinder.html", error = "invalid email or password")
 
 @app.route("/logout")
 def logout():
@@ -210,7 +210,9 @@ def search():
 @app.route("/afterlogin")
 def search_event():
     return render_template("searchEvent.html")
-app.run(debug = True , port = 5000)
+# app.run(debug = True , port = 5000)
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 
