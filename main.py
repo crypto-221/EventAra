@@ -2,6 +2,8 @@ from flask import Flask , render_template , request , session , redirect , url_f
 import pymysql as sql
 from datetime import datetime, timezone
 import geocoder
+import os 
+load_dotenv()
 app = Flask(__name__)
 app.secret_key = "EVENTARA"
 
@@ -38,7 +40,52 @@ def home():
 #                 conn.close()
 #     return render_template("eventfinder.html")
 
+@app.route("/aftersignup", methods=['POST'])
+def sign():
+    if request.method == 'POST':
 
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        try:
+            conn = sql.connect(
+                host=os.getenv("MYSQLHOST"),
+                user=os.getenv("MYSQLUSER"),
+                password=os.getenv("MYSQLPASSWORD"),
+                database=os.getenv("MYSQLDATABASE"),
+                port=int(os.getenv("MYSQLPORT"))
+            )
+
+            cur = conn.cursor()
+
+            query = "SELECT * FROM signup WHERE email=%s"
+            cur.execute(query, (email,))
+            data = cur.fetchone()
+
+            if data:
+                return render_template(
+                    "eventfinder.html",
+                    err="Email already exists"
+                )
+
+            insert_query = """
+            INSERT INTO signup(email, password, name)
+            VALUES(%s,%s,%s)
+            """
+
+            cur.execute(insert_query, (email, password, name))
+
+            conn.commit()
+            conn.close()
+
+            return render_template(
+                "eventfinder.html",
+                success="Signup successful"
+            )
+
+        except Exception as e:
+            return str(e)
 # @app.route("/afterlogin" , methods = ['POST'])
 # def login():
 #     if request.method == 'POST':
@@ -62,6 +109,59 @@ def home():
 
 #         else:
 #             return render_template("eventfinder.html", error = "invalid email or password")
+@app.route("/afterlogin", methods=['POST'])
+def login():
+
+    if request.method == 'POST':
+
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        try:
+
+            conn = sql.connect(
+                host=os.getenv("MYSQLHOST"),
+                user=os.getenv("MYSQLUSER"),
+                password=os.getenv("MYSQLPASSWORD"),
+                database=os.getenv("MYSQLDATABASE"),
+                port=int(os.getenv("MYSQLPORT"))
+            )
+
+            cur = conn.cursor()
+
+            query = """
+            SELECT * FROM signup
+            WHERE email=%s AND password=%s
+            """
+
+            cur.execute(query, (email, password))
+
+            data = cur.fetchone()
+
+            if data:
+
+                user = email.split('@')[0]
+
+                session['user'] = user
+
+                return render_template(
+                    "searchEvent.html",
+                    user=user
+                )
+
+            else:
+
+                return render_template(
+                    "eventfinder.html",
+                    error="Invalid email or password"
+                )
+
+        except Exception as e:
+            return str(e)
+
+
+
+
 
 @app.route("/logout")
 def logout():
