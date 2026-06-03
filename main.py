@@ -2,7 +2,8 @@ from flask import Flask , render_template , request , session , redirect , url_f
 import pymysql as sql
 from datetime import datetime, timezone
 import geocoder
-import os 
+import os
+from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 app.secret_key = "EVENTARA"
