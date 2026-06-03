@@ -41,7 +41,7 @@ def home():
 #                 conn.close()
 #     return render_template("eventfinder.html")
 
-@app.route("/aftersignup", methods=['POST'])
+@app.route("/aftersignup", methods=['POST' , 'GET'])
 def sign():
     if request.method == 'POST':
 
@@ -110,7 +110,7 @@ def sign():
 
 #         else:
 #             return render_template("eventfinder.html", error = "invalid email or password")
-@app.route("/afterlogin", methods=['POST'])
+@app.route("/afterlogin", methods=['POST', 'GET'])
 def login():
 
     if request.method == 'POST':
