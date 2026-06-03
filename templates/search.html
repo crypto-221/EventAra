@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventara — Find Events Near You</title>
+  <title>Login Required</title>
+  <style>
+    body{
+        margin:0;
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:
+        radial-gradient(circle at top left,#ff6a3d22,transparent 30%),
+        radial-gradient(circle at bottom right,#6a5cff22,transparent 30%),
+        #050816;
+        font-family:Arial, sans-serif;
+    }
+    .card{
+        width:350px;
+        padding:35px;
+        border-radius:25px;
+        background:rgba(18,18,35,0.75);
+        border:1px solid rgba(255,255,255,0.08);
+        backdrop-filter:blur(12px);
+        box-shadow:
+        0 0 30px rgba(255,106,61,0.15),
+        0 0 60px rgba(106,92,255,0.12);
+        color:white;
+        text-align:center;
+    }
+    .card h2{
+        margin-bottom:15px;
+        color:#ffffff;
+    }
+    .card p{
+        color:#b8b8c7;
+        margin-bottom:25px;
+    }
+    .login-btn{
+        display:inline-block;
+        padding:14px 25px;
+        border-radius:14px;
+        background:linear-gradient(
+        90deg,
+        #ff6a3d,
+        #ff8a5c
+        );
+
+        color:white;
+
+        text-decoration:none;
+
+        font-weight:bold;
+
+        transition:0.3s;
+    }
+    .login-btn:hover{
+
+        transform:translateY(-2px);
+
+        box-shadow:
+        0 0 20px rgba(255,106,61,0.5);
+    }
+</style>
+</head>
+<body>
+    <div class="card">
+        <h2>Please Login First!</h2>
+        <p>You need to login before searching events</p>
+        <a href="/" class="login-btn">Go to Login</a>
+    </div>
+</body>
+</html>

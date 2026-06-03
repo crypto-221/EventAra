@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About • Eventara</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#0b1020;
+            color:white;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .about-box{
+
+            width:100%;
+            max-width:800px;
+
+            background:#111827;
+
+            padding:50px;
+
+            border-radius:20px;
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            box-shadow:0 10px 40px rgba(0,0,0,0.4);
+
+        }
+
+        h1{
+
+            font-size:42px;
+            margin-bottom:20px;
+
+        }
+
+        h1 span{
+            color:#ff6b35;
+        }
+
+        p{
+
+            color:#cbd5e1;
+
+            line-height:1.9;
+
+            margin-bottom:18px;
+
+            font-size:16px;
+
+        }
+
+        .home-btn{
+
+            display:inline-block;
+
+            margin-top:20px;
+
+            text-decoration:none;
+
+            background:#ff6b35;
+
+            color:white;
+
+            padding:14px 28px;
+
+            border-radius:12px;
+
+            font-weight:600;
+
+            transition:0.3s;
+
+        }
+
+        .home-btn:hover{
+
+            background:#ff844f;
+
+            transform:translateY(-2px);
+
+        }
+
+        @media(max-width:700px){
+
+            .about-box{
+                padding:30px;
+            }
+
+            h1{
+                font-size:32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="about-box">
+
+        <h1>
+            About <span>Eventhub</span>
+        </h1>
+
+        <p>
+            Eventhub is a smart event finder platform where users can discover nearby events using live location and city-based search.
+        </p>
+
+        <p>
+            This project helps users explore concerts, festivals, workshops, meetups and many other live experiences happening around them.
+        </p>
+
+        <p>
+            The platform uses APIs and modern web technologies to provide real-time event information with a clean and responsive interface.
+        </p>
+
+        <a href="{{ url_for('home') }}" class="home-btn">
+        Return To Home
+        </a>
+
+    </div>
+
+</body>
+</html>

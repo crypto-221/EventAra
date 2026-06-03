@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EventSpot</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body{
+    background:#0d1117;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    padding:20px;
+}
+
+h1{
+    font-size:34px;
+    margin-bottom:5px;
+}
+h1 span{ color:#ff6b35; }
+
+.subtext{
+    color:#777;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#161b27;
+    border:1px solid #1e2535;
+    border-radius:16px;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+label{
+    font-size:12px;
+    color:#aaa;
+    margin-bottom:6px;
+    display:block;
+}
+
+select, input{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #1e2535;
+    background:#0d1117;
+    color:#fff;
+    outline:none;
+}
+
+select:focus, input:focus{
+    border-color:#ff6b35;
+}
+
+.divider{
+    text-align:center;
+    font-size:11px;
+    color:#555;
+    margin:5px 0;
+}
+
+.gps-btn{
+    width:100%;
+    padding:12px;
+    border:1px dashed #2a3045;
+    border-radius:10px;
+    background:transparent;
+    color:#aaa;
+    cursor:pointer;
+    transition:0.2s;
+}
+.gps-btn:hover{
+    border-color:#ff6b35;
+    color:#ff6b35;
+}
+
+.btn-search{
+    width:100%;
+    padding:13px;
+    background:#ff6b35;
+    border:none;
+    border-radius:10px;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-search:hover{
+    background:#e55a25;
+}
+
+.btn-logout{
+    width:100%;
+    padding:12px;
+    border:1px solid #1e2535;
+    border-radius:10px;
+    text-align:center;
+    color:#777;
+    text-decoration:none;
+    display:block;
+}
+
+.btn-logout:hover{
+    color:#ff6b35;
+    border-color:#ff6b35;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Welcome back, <span>{{user}}</span></h1>
+    <p class="subtext">Search events near you — use GPS or select a city</p>
+
+    <form action="/event" method="post" class="card">
+        <label>Select City</label>
+        <select name="city" required>
+            <option value="" disabled selected>— Choose a city —</option>
+            <option value="delhi">Delhi</option>
+            <option value="jaipur">Jaipur</option>
+            <option value="lucknow">Lucknow</option>
+            <option value="chandigarh">Chandigarh</option>
+            <option value="agra">Agra</option>
+            <option value="varanasi">Varanasi</option>
+
+            <option value="mumbai">Mumbai</option>
+            <option value="pune">Pune</option>
+            <option value="ahmedabad">Ahmedabad</option>
+            <option value="surat">Surat</option>
+            <option value="goa">Goa</option>
+
+            <option value="bangalore">Bangalore</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="chennai">Chennai</option>
+            <option value="kochi">Kochi</option>
+            <option value="coimbatore">Coimbatore</option>
+
+            <option value="kolkata">Kolkata</option>
+            <option value="bhubaneswar">Bhubaneswar</option>
+            <option value="patna">Patna</option>
+            <option value="guwahati">Guwahati</option>
+        </select>
+        <button type="submit" class="btn-search">
+        Search Events
+        </button>
+        </form>
+
+        <form action="/location" method="get">
+        <button type="submit" class="gps-btn">
+            Use Live Location
+        </button>
+        </form>
+
+
+    <br>
+    <a href="/logout" class="btn-logout">Logout</a>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

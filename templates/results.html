@@ -1,0 +1,73 @@
+<!-- YE results.html apne templates folder mein daalo -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events in {{ city }}</title>
+    <style>
+        body {
+            background: #0d1117;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        h1 { color: #ff6b35; }
+        .count { color: #aaa; margin-bottom: 20px; }
+        .event-card {
+            background: #1a1f2e;
+            border: 1px solid #2a2f3e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .event-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 8px;
+        }
+        .event-meta {
+            color: #aaa;
+            font-size: 14px;
+            margin: 4px 0;
+        }
+        .category-badge {
+            background: #ff6b35;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .no-events {
+            color: #aaa;
+            font-size: 16px;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Events in {{ city }}</h1>
+    <p class="count">{{ total }} events found</p>
+
+    {% if events %}
+        {% for event in events %}
+        <div class="event-card">
+            <div class="category-badge">{{ event.category }}</div>
+            <div class="event-name">{{ event.name }}</div>
+            <div class="event-meta">📅 {{ event.date }}</div>
+            <div class="event-meta">📍 {{ event.venue }}, {{ event.city }}</div>
+            <div class="event-meta">{{ event.description }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-events">
+            No events found for {{ city }}. Try another city!
+        </div>
+    {% endif %}
+
+</body>
+</html>

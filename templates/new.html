@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body{
+    background:#0d1117;
+    font-family:Arial;
+    color:white;
+}
+
+/* GRID */
+.bms-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:18px;
+    padding:20px;
+}
+
+/* CARD */
+.bms-card{
+    background:#161b27;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.3s;
+    position:relative;
+}
+
+.bms-card:hover{
+    transform:scale(1.05);
+}
+
+/* IMAGE */
+.img-wrapper{
+    position:relative;
+    height:250px;
+    overflow:hidden;
+}
+
+.img-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.bms-card:hover img{
+    transform:scale(1.1);
+}
+
+/* DARK OVERLAY */
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+/* TEXT */
+.bms-content{
+    padding:12px;
+}
+
+.bms-content h3{
+    font-size:15px;
+    margin-bottom:5px;
+}
+
+.bms-content p{
+    font-size:13px;
+    color:#aaa;
+}
+.back-btn{
+    display:inline-block;
+    padding:10px 18px;
+    background:#ff8c00;   /* orange */
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+}
+.back-btn:hover{
+    background:#e67600;
+    transform:scale(1.05);
+}
+.back-btn{
+    box-shadow:0 4px 10px rgba(255,140,0,0.3);
+}
+</style>
+</head>
+<body>
+    <div class="bms-container">
+{% for i in events %}
+<div class="bms-card">
+    <div class="img-wrapper">
+        <img src="{{'/static/BGI.jpg' }}">
+        <div class="overlay"></div>
+    </div>
+    <div class="bms-content">
+        <h3>{{ i.title }}</h3>
+        <p> {{ i.date }}</p>
+        <p> {{ i.address }}</p>
+    </div>
+</div>
+{% endfor %}
+<div>
+<a href="{{ url_for('search_event') }}" class="back-btn">
+    Back
+</a>
+</div>
+
+</body>
+</html>
